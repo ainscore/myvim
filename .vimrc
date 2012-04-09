@@ -1,12 +1,4 @@
 "===================================================================================
-"         FILE:  .vimrc
-"  DESCRIPTION:  suggestion for a personal configuration file ~/.vimrc
-"       AUTHOR:  Dr.-Ing. Fritz Mehner
-"      CREATED:  04.04.2009
-"     REVISION:  $Id: customization.vimrc,v 1.6 2009/10/03 12:24:30 mehner Exp $
-"===================================================================================
-"
-"===================================================================================
 " GENERAL SETTINGS
 "===================================================================================
 
@@ -27,26 +19,7 @@ filetype  indent on
 " Switch syntax highlighting on.
 "-------------------------------------------------------------------------------
 syntax    on            
-"
-" Platform specific items:
-" - central backup directory (has to be created)
-" - default dictionary
-" Uncomment your choice.  
-if  has("win16") || has("win32")     || has("win64") || 
-  \ has("win95") || has("win32unix")
-    "
-"    runtime mswin.vim
-"    set backupdir =$VIM\vimfiles\backupdir
-"    set dictionary=$VIM\vimfiles\wordlists/german.list
-else
-"    set backupdir =$HOME/.vim.backupdir
-"    set dictionary=$HOME/.vim/wordlists/german.list
-endif
-"
-" Using a backupdir under UNIX/Linux: you may want to include a line similar to
-"   find  $HOME/.vim.backupdir -name "*" -type f -mtime +60 -exec rm -f {} \;
-" in one of your shell startup files (e.g. $HOME/.profile)
-"
+
 "-------------------------------------------------------------------------------
 " Various settings
 "-------------------------------------------------------------------------------
@@ -84,28 +57,7 @@ set wildmenu                    " command-line completion in an enhanced mode
 if has("autocmd")
   autocmd BufEnter * :lchdir %:p:h
 endif
-"
-"-------------------------------------------------------------------------------
-" close window (conflicts with the KDE setting for calling the process manager)
-"-------------------------------------------------------------------------------
- noremap  <C-Esc>       :close<CR>
-inoremap  <C-Esc>  <C-C>:close<CR>
-"
-"-------------------------------------------------------------------------------
-" Fast switching between buffers
-" The current buffer will be saved before switching to the next one.
-" Choose :bprevious or :bnext
-"-------------------------------------------------------------------------------
- noremap  <silent> <s-tab>       :if &modifiable && !&readonly && 
-     \                      &modified <CR> :write<CR> :endif<CR>:bprevious<CR>
-inoremap  <silent> <s-tab>  <C-C>:if &modifiable && !&readonly && 
-     \                      &modified <CR> :write<CR> :endif<CR>:bprevious<CR>
-"
-"-------------------------------------------------------------------------------
-" Leave the editor with Ctrl-q (KDE): Write all changed buffers and exit Vim
-"-------------------------------------------------------------------------------
-nnoremap  <C-q>    :wqall<CR>
-"
+
 "-------------------------------------------------------------------------------
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
@@ -117,111 +69,20 @@ if has("autocmd")
         \   exe "normal! g`\"" |
         \ endif
 endif " has("autocmd")
-"
-"-------------------------------------------------------------------------------
-"  some additional hot keys
-"-------------------------------------------------------------------------------
-"    F2   -  write file without confirmation
-"    F3   -  call file explorer Ex
-"    F4   -  show tag under curser in the preview window (tagfile must exist!)
-"    F5   -  open quickfix error window
-"    F6   -  close quickfix error window
-"    F7   -  display previous error
-"    F8   -  display next error   
-"-------------------------------------------------------------------------------
-"
-map   <silent> <F2>        :write<CR>
-map   <silent> <F3>        :Explore<CR>
-nmap  <silent> <F4>        :exe ":ptag ".expand("<cword>")<CR>
-map   <silent> <F5>        :copen<CR>
-map   <silent> <F6>        :cclose<CR>
-map   <silent> <F7>        :cp<CR>
-map   <silent> <F8>        :cn<CR>
-"
-imap  <silent> <F2>   <Esc>:write<CR>
-imap  <silent> <F3>   <Esc>:Explore<CR>
-imap  <silent> <F4>   <Esc>:exe ":ptag ".expand("<cword>")<CR>
-imap  <silent> <F5>   <Esc>:copen<CR>
-imap  <silent> <F6>   <Esc>:cclose<CR>
-imap  <silent> <F7>   <Esc>:cp<CR>
-imap  <silent> <F8>   <Esc>:cn<CR>
-"
-"-------------------------------------------------------------------------------
-" Fast switching between buffers
-" The current buffer will be saved before switching to the next one.
-" Choose :bprevious or :bnext
-"-------------------------------------------------------------------------------
-"
- map  <silent> <s-tab>  <Esc>:if &modifiable && !&readonly && 
-     \                  &modified <CR> :write<CR> :endif<CR>:bprevious<CR>
-imap  <silent> <s-tab>  <Esc>:if &modifiable && !&readonly && 
-     \                  &modified <CR> :write<CR> :endif<CR>:bprevious<CR>
-"
-"-------------------------------------------------------------------------------
-" Leave the editor with Ctrl-q : Write all changed buffers and exit Vim
-"-------------------------------------------------------------------------------
-nmap  <C-q>    :wqa<CR>
-"
-"-------------------------------------------------------------------------------
-" comma always followed by a space
-"-------------------------------------------------------------------------------
-"inoremap  ,  ,<Space>
-"
-"-------------------------------------------------------------------------------
-" autocomplete parenthesis, brackets and braces
-"-------------------------------------------------------------------------------
-"inoremap ( ()<Left>
-"inoremap [ []<Left>
-"inoremap { {}<Left>
-"
-"vnoremap ( s()<Esc>P<Right>%
-"vnoremap [ s[]<Esc>P<Right>%
-"vnoremap { s{}<Esc>P<Right>%
-"
+
 "-------------------------------------------------------------------------------
 " autocomplete quotes (visual and select mode)
 "-------------------------------------------------------------------------------
 xnoremap  '  s''<Esc>P<Right>
 xnoremap  "  s""<Esc>P<Right>
 xnoremap  `  s``<Esc>P<Right>
-"
+
 "-------------------------------------------------------------------------------
 " Change the working directory to the directory containing the current file
 "-------------------------------------------------------------------------------
 if has("autocmd")
   autocmd BufEnter * :lchdir %:p:h
 endif " has("autocmd")
-"
-"===================================================================================
-" VARIOUS PLUGIN CONFIGURATIONS
-"===================================================================================
-"
-"-------------------------------------------------------------------------------
-" c.vim
-"-------------------------------------------------------------------------------
-"            
-" --empty --
-"                         
-"-------------------------------------------------------------------------------
-" taglist.vim : toggle the taglist window
-" taglist.vim : define the title texts for make
-" taglist.vim : define the title texts for qmake
-"-------------------------------------------------------------------------------
-noremap <silent> <F11>  <Esc><Esc>:Tlist<CR>
-inoremap <silent> <F11>  <Esc><Esc>:Tlist<CR>
-set foldmethod=syntax
-
-let Tlist_GainFocus_On_ToggleOpen = 1
-let Tlist_Close_On_Select 				= 1
-
-let tlist_make_settings  = 'make;m:makros;t:targets'
-let tlist_qmake_settings = 'qmake;t:SystemVariables'
-
-if has("autocmd")
-  " ----------  qmake : set filetype for *.pro  ----------
-  autocmd BufNewFile,BufRead *.pro  set filetype=qmake
-endif " has("autocmd")
-
 
 command SetGLSLFileType call SetGLSLFileType()
 function SetGLSLFileType()
@@ -236,9 +97,10 @@ function SetGLSLFileType()
     endif
   endfor
 endfunction
+
 au BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl SetGLSLFileType
 
-
+" Use backtick for <esc> for better reach
 noremap ` <Esc>
 inoremap ` <Esc>
 vnoremap ` <Esc>
@@ -249,8 +111,10 @@ nnoremap ` <Esc>
 "Don't unindent comments in python
 inoremap # X#
 
+"Dont lose what we paste
 xnoremap p pgvy
 
+" Remap direction keys for standard homerow position
 nnoremap j h
 nnoremap k j
 nnoremap l k
@@ -280,6 +144,7 @@ nnoremap <C-w>K <C-w>J
 nnoremap <C-w>L <C-w>K
 nnoremap <C-w>: <C-w>L
 
+" More reachable beggining/end of line
 nnoremap h ^
 nnoremap ' $
 
