@@ -1,33 +1,21 @@
-"===================================================================================
-" GENERAL SETTINGS
-"===================================================================================
+runtime bundle/vim-pathogen/autoload/pathogen.vim
 
-"-------------------------------------------------------------------------------
+call pathogen#infect()
+
+set ttymouse=xterm
+
 " Use Vim settings, rather then Vi settings.
-" This must be first, because it changes other options as a side effect.
-"-------------------------------------------------------------------------------
 set nocompatible
-"
-"-------------------------------------------------------------------------------
-" Enable file type detection. Use the default filetype settings.
-" Also load indent files, to automatically do language-dependent indenting.
-"-------------------------------------------------------------------------------
+
 filetype  plugin on
 filetype  indent on
-"
-"-------------------------------------------------------------------------------
-" Switch syntax highlighting on.
-"-------------------------------------------------------------------------------
 syntax    on            
-
-"-------------------------------------------------------------------------------
-" Various settings
-"-------------------------------------------------------------------------------
 set autoindent                  " copy indent from current line
 set autoread                    " read open files again when changed outside Vim
 set autowrite                   " write a modified buffer on each :next , ...
 set backspace=indent,eol,start  " backspacing over everything in insert mode
 set backup                      " keep a backup file
+set backupdir=~/.vimbackup,.
 set browsedir=current           " which directory to use for the file browser
 set complete+=k                 " scan the files given with the 'dictionary' option
 set expandtab
@@ -45,23 +33,15 @@ set tabstop=4                   " number of spaces that a <Tab> counts for
 set visualbell                  " visual bell instead of beeping
 set wildignore=*.bak,*.o,*.e,*~ " wildmenu: ignore these extensions
 set wildmenu                    " command-line completion in an enhanced mode
-"
-"===================================================================================
-" BUFFERS, WINDOWS
-"===================================================================================
-"
-"-------------------------------------------------------------------------------
+
 " The current directory is the directory of the file in the current window.
-"-------------------------------------------------------------------------------
 if has("autocmd")
   autocmd BufEnter * :lchdir %:p:h
 endif
 
-"-------------------------------------------------------------------------------
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
 " (happens when dropping a file on gvim).
-"-------------------------------------------------------------------------------
 if has("autocmd")
   autocmd BufReadPost *
         \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -69,20 +49,7 @@ if has("autocmd")
         \ endif
 endif " has("autocmd")
 
-"-------------------------------------------------------------------------------
-" autocomplete quotes (visual and select mode)
-"-------------------------------------------------------------------------------
-xnoremap  '  s''<Esc>P<Right>
-xnoremap  "  s""<Esc>P<Right>
-xnoremap  `  s``<Esc>P<Right>
-
-"-------------------------------------------------------------------------------
-" Change the working directory to the directory containing the current file
-"-------------------------------------------------------------------------------
-if has("autocmd")
-  autocmd BufEnter * :lchdir %:p:h
-endif " has("autocmd")
-
+" Shader file support
 command SetGLSLFileType call SetGLSLFileType()
 function SetGLSLFileType()
   for item in getline(1,10)
@@ -107,9 +74,6 @@ xnoremap ` <Esc>
 cnoremap ` <Esc>
 nnoremap ` <Esc>
 
-"Don't unindent comments in python
-inoremap # X#
-
 "Dont lose what we paste
 xnoremap p pgvy
 
@@ -127,11 +91,11 @@ vnoremap ; l
 nnoremap L H
 nnoremap K L
 
-nnoremap <C-l> <C-u> 
-nnoremap <C-k> <C-d> 
+nnoremap <C-l> <C-u>
+nnoremap <C-k> <C-d>
 
 nnoremap <C-L> <C-Y>
-nnoremap <C-K> <C-E> 
+nnoremap <C-K> <C-E>
 
 nnoremap <C-w>j <C-w>h
 nnoremap <C-w>k <C-w>j
@@ -150,3 +114,6 @@ nnoremap ' $
 vnoremap h ^
 vnoremap ' $
 
+colorscheme distinguished
+
+set foldmethod=syntax

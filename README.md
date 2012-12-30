@@ -7,4 +7,4 @@ Installation
 
 2. Add the following to your ~/.vimrc:
 
-        source ~/.vim/.vimrc
+        source ~/.vim/vimrc
