@@ -117,3 +117,4 @@ vnoremap ' $
 colorscheme distinguished
 
 set foldmethod=syntax
+set laststatus=2
