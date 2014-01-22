@@ -91,6 +91,9 @@ vnoremap ; l
 nnoremap L H
 nnoremap K L
 
+nnoremap gk gj
+nnoremap gl gk
+
 nnoremap <C-l> <C-u>
 nnoremap <C-k> <C-d>
 
@@ -117,4 +120,5 @@ vnoremap ' $
 colorscheme distinguished
 
 set foldmethod=syntax
+set foldlevel=10
 set laststatus=2
