@@ -16,9 +16,9 @@
 [submodule "bundle/handlebars"]
 	path = bundle/handlebars
 	url = git://github.com/nono/vim-handlebars.git
-[submodule "dart-vim-plugin"]
-	path = dart-vim-plugin
-	url = https://github.com/dart-lang/dart-vim-plugin.git
 [submodule "bundle/dart-vim-plugin"]
 	path = bundle/dart-vim-plugin
 	url = https://github.com/dart-lang/dart-vim-plugin.git
+[submodule "bundle/ackvim"]
+	path = bundle/ackvim
+	url = https://github.com/mileszs/ack.vim.git

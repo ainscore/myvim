@@ -122,3 +122,17 @@ colorscheme distinguished
 set foldmethod=syntax
 set foldlevel=10
 set laststatus=2
+
+function! AckText()
+    let text = input('Txt: ')
+    let gitroot = system('git rev-parse --show-toplevel')
+    execute ":cd " . gitroot
+    if text == ""
+        echom "No text entered"
+        return
+    endif
+    execute ':Ack ' . text . ' ./'
+endfunction
+
+nnoremap <leader>/ :call AckText()<CR>
+
