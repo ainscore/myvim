@@ -33,6 +33,8 @@ set tabstop=4                   " number of spaces that a <Tab> counts for
 set visualbell                  " visual bell instead of beeping
 set wildignore=*.bak,*.o,*.e,*~ " wildmenu: ignore these extensions
 set wildmenu                    " command-line completion in an enhanced mode
+set cursorcolumn
+set cursorline
 
 " The current directory is the directory of the file in the current window.
 if has("autocmd")
