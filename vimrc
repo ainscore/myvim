@@ -51,23 +51,6 @@ if has("autocmd")
         \ endif
 endif " has("autocmd")
 
-" Shader file support
-command SetGLSLFileType call SetGLSLFileType()
-function SetGLSLFileType()
-  for item in getline(1,10)
-    if item =~ "#version 400"
-      execute ':set filetype=glsl400'
-      break
-    endif
-    if item =~ "#version 330"
-      execute ':set filetype=glsl330'
-      break
-    endif
-  endfor
-endfunction
-
-au BufNewFile,BufRead *.frag,*.vert,*.fp,*.vp,*.glsl SetGLSLFileType
-
 " Use backtick for <esc> for better reach
 noremap ` <Esc>
 inoremap ` <Esc>
@@ -118,6 +101,9 @@ nnoremap ' $
 
 vnoremap h ^
 vnoremap ' $
+
+nnoremap w :silent execute ":normal! /\[a-zA-Z0-9\]\\+\n:noh\n"
+vnoremap w :silent execute ":normal! /\[a-zA-Z0-9\]\\+\n:noh\n"
 
 colorscheme distinguished
 
