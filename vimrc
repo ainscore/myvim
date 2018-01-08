@@ -105,6 +105,11 @@ vnoremap ' $
 nnoremap w :silent execute ":normal! /\[a-zA-Z0-9\]\\+\n:noh\n"
 vnoremap w :silent execute ":normal! /\[a-zA-Z0-9\]\\+\n:noh\n"
 
+nnoremap ∆ 10h
+nnoremap ˚ 10j
+nnoremap ¬ 10k
+nnoremap … 10l
+
 colorscheme distinguished
 
 set foldmethod=syntax
