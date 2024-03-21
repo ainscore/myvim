@@ -80,6 +80,14 @@ if has("autocmd")
         \ endif
 endif " has("autocmd")
 
+" Use backtick for <esc> for better reach
+noremap ` <Esc>
+inoremap ` <Esc>
+vnoremap ` <Esc>
+xnoremap ` <Esc>
+cnoremap ` <Esc>
+nnoremap ` <Esc>
+
 "Dont lose what we paste
 xnoremap p pgvy
 
